@@ -81,12 +81,12 @@ function removeAttachment($id,$type=null){
 	global $db;
 	if($type == 'ticket'){
 		$attachment = $db->fetchOne("SELECT enc FROM ".TABLE_PREFIX."attachments WHERE id=".$id);
-		$db->delete("attachments", "id=".$id);
+		$db->delete(TABLE_PREFIX."attachments", "id=".$id);
 		$dirfile = UPLOAD_DIR.'tickets/'.$attachment;		
 		@unlink($dirfile);
 	}elseif($type == 'article'){
 		$attachment = $db->fetchOne("SELECT enc FROM ".TABLE_PREFIX."attachments WHERE id=".$id);
-		$db->delete("attachments", "id=".$id);
+		$db->delete(TABLE_PREFIX."attachments", "id=".$id);
 		$dirfile = UPLOAD_DIR.'articles/'.$attachment;		
 		@unlink($dirfile);
 	}elseif($type == 'msg'){
